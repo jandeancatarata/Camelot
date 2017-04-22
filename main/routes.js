@@ -183,7 +183,7 @@ const init = function RouteHandler(app, config, passport, upload) {
             text:slackEvent.text,
             user:slackEvent.user
           };
-          if(message.text.search("has joinced the channel") == -1){
+          if(message.text != null && message.text.search("has joined the channel") == -1){
             SlackMsg.findOneAndUpdate({ts:message.ts},message,{upsert:true,new:true},(err,res)=>{
               if(err) console.log(err);
             });
